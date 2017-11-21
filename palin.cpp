@@ -16,6 +16,24 @@ struct N
 };
 unsigned int res =0;
 string s;
+unsigned int longest_palin =0;
+unsigned int longest_palin_count =0;
+struct N *Node0, *Node1;
+/*
+ * whenever a sufflink is referred by a node, all the smaller suffix palindromes count are updated
+ *
+ */
+void updateCount (N *node)
+{
+	if(DEBUG)cout<<"updateCount"<<endl;
+    while (node && node != Node1)
+    {
+        node->count++;
+        if(DEBUG)cout<<"updateCount done"<<endl;
+        node = node->suffix_link;
+    }
+}
+
 void display(N *node)
 {
     for (int i=0; i<26; i++)
@@ -23,27 +41,33 @@ void display(N *node)
             N * t= node->node[i];
             if(t)
             {
-                if(DEBUG)cout <<"index: "<< t->index<<" len: "<<t->len<<" count: "<<t->count<<endl;
-                cout << s.substr(t->index,t->len)<<endl;
+                if(DEBUG)
+                {
+                    cout <<"index: "<< t->index<<" len: "<<t->len<<" count: "<<t->count<<endl;
+                    cout << s.substr(t->index,t->len)<<endl;
+                }
                 if(t->count)
                     res += t->count;
+                if(t->len >= longest_palin)
+                    {if(t->len!=longest_palin)longest_palin_count=t->count;else longest_palin_count++; longest_palin = t->len; }
                 display(node->node[i]);
             }
         }
 }
 int main(int argc, char*argv[])
 {
-
+	longest_palin = 0;
+	longest_palin_count =0;
 	cin >> s;
 	struct N *current_node =NULL;
 	// Setup imaginary node node;
-	struct N *Node0 = new N;
+	Node0 = new N;
 	memset(Node0, 0, sizeof(N));
 	Node0->suffix_link = Node0;
 	Node0->len =-1;
 	
 	//Setup 0 node
-	struct N *Node1 = new N;
+	Node1 = new N;
 	memset(Node1, 0, sizeof(N));
 	Node1->suffix_link = Node0;
 	Node1->len =0;
@@ -80,6 +104,14 @@ int main(int argc, char*argv[])
 		{
 			if(s[i]== s[i-start->len-1]) // Found node which can be extended
 			{
+			    if(start->node[s[i] -'a'])
+			    {
+			        start->node[s[i] -'a']->count++;
+			        current_node = start->node[s[i] -'a'];
+			                        found =true;
+			        continue;
+			    }
+
 				start->node[s[i] -'a'] = new N;
 				memset(start->node[s[i] -'a'], 0, sizeof(N));
 				start->node[s[i] -'a']->len = 2 + start->len;
@@ -92,7 +124,7 @@ int main(int argc, char*argv[])
 				//If suffix link point to itself, first check if a node of that characters exists , if yes use that else use Node0
 				if(link->suffix_link==link)
 			        if(link->node[s[i]-'a'])
-			            start->node[s[i] -'a']->suffix_link = link->node[s[i]-'a'];
+			            {start->node[s[i] -'a']->suffix_link = link->node[s[i]-'a'];updateCount(link->node[s[i]-'a']);}
 			        else
 			        	start->node[s[i] -'a']->suffix_link = Node1;
 				else
@@ -104,7 +136,7 @@ int main(int argc, char*argv[])
 						    break;
 					}
 					if(link->node[s[i]-'a'])
-						link = link->node[s[i]-'a'];
+						{link = link->node[s[i]-'a'];updateCount(link);}
 					else
 						link = Node1;
 					start->node[s[i] -'a']->suffix_link=link;
@@ -124,6 +156,7 @@ int main(int argc, char*argv[])
 	if(DEBUG)cout <<"Zero Node"<<endl;
 	display(Node1);
 	cout << "Total palindromes are: "<<res<<endl;
+	cout <<"Longest Palindrom is of length: "<<longest_palin<<" Count: "<<longest_palin_count<<endl<<endl;
 }
 
 /* Sample Test Vectors:
@@ -132,4 +165,6 @@ int main(int argc, char*argv[])
  * abaaa
  * abbaab
  * aaba
+ * malayalam
+ * abatxaba
  * */
