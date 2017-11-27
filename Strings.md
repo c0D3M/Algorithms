@@ -1,13 +1,13 @@
 **Longest Palindromic Substring**
 Given a string we have to find a longest substring which is also a palindrome.
 
-1. O(n^3) Algorithm
+1. **O(n^3) Algorithm**
 In this algorithm we basically 
     - iterate each index of a string (Loop #1)
     - For each index, iterate all possible substring(Loop #2)
     - Test for palindrome (Loop #3)
 
-2. O(n^2) Algorithm
+2. **O(n^2) Algorithm**
 Basicallywe will have a 2-D table, row will be index and columns will be sub-string index.  
     - iterate each index of a string (Loop #1)  
     - For each index, iterate all possible substring(Loop #2)  
@@ -22,13 +22,13 @@ inner loop start from i+1 to 'n'
   - i=2 s[0] == s[2] hence chek inner string which will be at one-row down and one-column earlier. i.e. [1,1] which we know is already palidrome
   hence [0,2]  i.e. aba is palindrome.
   
-3. O(n) Algorithm : Palindromic Tree
+3. **O(n) Algorithm : Palindromic Tree**
      Easy to understand , basically each node is palindrome and we test if that node can be extended or not,  
      if yes: extended for that characters  
      if no: follow suffix link , which point to next suffix which is also a palindrome (except not the whole string, because that we already tested at this node)
-4. O(n) Algorithm: Manacher algorithm
+4. **O(n) Algorithm: Manacher algorithm**
  
-5: O(n log n) : Suffix Array + binary search
+5: **O(n log n) : Suffix Array + binary search**
  Suffix array is an array of integers giving the starting positions of suffixes of a string in lexicographical order  
 - Create a Suffix Array for S+'#'+Reversed(S), this can be done using prefix-doubling algroithm in O(n log n) time or DC3 algorithm in O(n) time  
 - Create LCP Array i.e. longest matching prefix between i and i-1 suffixes.
