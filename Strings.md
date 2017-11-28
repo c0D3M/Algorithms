@@ -1,3 +1,17 @@
+**Pattern Matching Algorithms**
+1. **Z-Algorithm**
+Here at each index we calculate Z-value, which is nothing but length of matching prefix at that index.
+We can skip calculation of Z-value for certain index where previous Z-value >1 , idea is since we already found a pattern
+match, subsequent **indices** will just copy over the values. To do we would define a **Z-box** which is current pattern matched,
+**Z_l** is left index of box, **Z_r** is right index.
+
+Only key point to remember is if index+Z_l > Z_r , we have to compare characters beyond.
+Concate P+'$'+T and calculate Z-value for this string.
+2. **Knuth Morris Pratt (KMP)**
+3. **Bayer Moore Pattern**
+4. **Aho Corasick**
+5. **Suffix Array**
+6. **Suffix Automata**
 **Longest Palindromic Substring**
 Given a string we have to find a longest substring which is also a palindrome.
 
