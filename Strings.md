@@ -7,11 +7,13 @@ match, subsequent **indices** will just copy over the values. To do we would def
 
 Only key point to remember is if index+Z_l > Z_r , we have to compare characters beyond.
 Concate P+'$'+T and calculate Z-value for this string.
+
 2. **Knuth Morris Pratt (KMP)**
 3. **Bayer Moore Pattern**
 4. **Aho Corasick**
 5. **Suffix Array**
 6. **Suffix Automata**
+
 **Longest Palindromic Substring**
 Given a string we have to find a longest substring which is also a palindrome.
 
@@ -29,14 +31,13 @@ Basicallywe will have a 2-D table, row will be index and columns will be sub-str
          - if yes: then check if inner sub-string is palindromic or not, this information we stored from earlier loops.
          - if no: continue;
          
-Example: abaa  
-Individual string at index 0,1,2,3 of length 1 are 1-letter palindrome, hence mark [0,0] [1,1] [2,2] [3,3] as true in 2-D array.  
-Now lets see for all substring at index i = 0;  
-inner loop start from i+1 to 'n'  
-  - i=1, s[0] != s[1] continue;
-  - i=2 s[0] == s[2] hence chek inner string which will be at one-row down and one-column earlier. i.e. [1,1] which we know is already palidrome
-
-hence [0,2]  i.e. aba is palindrome.
+    Example: abaa  
+    Individual string at index 0,1,2,3 of length 1 are 1-letter palindrome, hence mark [0,0] [1,1] [2,2] [3,3] as true in 2-D array.  
+    Now lets see for all substring at index i = 0;  
+    inner loop start from i+1 to 'n'  
+        - i=1, s[0] != s[1] continue;
+        - i=2 s[0] == s[2] hence chek inner string which will be at one-row down and one-column earlier. i.e. [1,1] which we know is already palidrome
+    hence [0,2]  i.e. aba is palindrome.
 
 3. **O(n) Algorithm : Palindromic Tree**
      Easy to understand , basically each node is palindrome and we test if that node can be extended or not,  
