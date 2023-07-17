@@ -88,3 +88,4 @@ public:
     }
 };
 ```
+https://leetcode.com/problems/smallest-sufficient-team/description/
