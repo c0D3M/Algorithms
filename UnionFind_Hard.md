@@ -1,4 +1,9 @@
 In this chapter we will try to solve solve hard problems using Union Find.  
+[2812. Find the Safest Path in a Grid](https://leetcode.com/problems/find-the-safest-path-in-a-grid/)  
+Key idea for using union find is first find for all grid manhattan distance to thief.  
+Now start with cells which has maximum distance and union with there unvisited neighbors.  
+Stop at the moment (0,0) & (n-1, n-1) parent is same and return the distance when this occur.  
+Same problem can be solved using bsearch as well as priority heap (Dijkstra).  
 
 [778. Swim in Rising Water](https://leetcode.com/problems/swim-in-rising-water/description/)
 Put all cells as a separate individual component.
