@@ -94,3 +94,10 @@ public:
     }
 };
 ```
+[803. Bricks Falling When Hit](https://leetcode.com/problems/bricks-falling-when-hit/description/)  
+Key idea: we first create connected component without hit brick ,
+question is asking how many brick will be unstable when a bricke is removed.
+Instead we do reverse, add that hit brick and now try to find the size of conneccted compont(root as 0) and subtract from previous.
+[](https://leetcode.com/problems/escape-the-spreading-fire/)  
+https://leetcode.com/problems/path-with-minimum-effort/description/  
+
