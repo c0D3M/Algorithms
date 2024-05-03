@@ -47,7 +47,7 @@ Problem Similar to counting & prefix Sum/HashMap
 [560. Subarray Sum Equals K](https://leetcode.com/problems/subarray-sum-equals-k/description/)  
 [2090. K Radius Subarray Averages](https://leetcode.com/problems/k-radius-subarray-averages/description/)  
 [713. Subarray Product Less Than K](https://leetcode.com/problems/subarray-product-less-than-k/description/)  
-
+[2364. Count Number of Bad Pairs](https://leetcode.com/problems/count-number-of-bad-pairs/description/)  
 [1590. Make Sum Divisible by P](https://leetcode.com/problems/make-sum-divisible-by-p/description/)  
 Here we are trying to find smallest subarray of size remainder i.e. ```k = totalSum  % p ```
 psum<sub>i</sub> - psum<sub>j</sub> = k   
