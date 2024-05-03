@@ -100,3 +100,27 @@ Since we are dealing with modulo and it can be negative we can add an extra  mod
         return ans;
     }
 ```
+
+[1248. Count Number of Nice Subarrays](https://leetcode.com/problems/count-number-of-nice-subarrays/description/)  
+Same as above , we are interested in only odd number, so again convert to binary array and apply the template.  
+```
+int numberOfSubarrays(vector<int>& nums, int k) {
+        int n = nums.size();
+        unordered_map<int, int> countMap;
+        countMap[0] = 1;
+        // Step 1: Only odd numbers are considered
+        for(int i = 0; i < n ;++i){
+            nums[i] &= 1;
+        }
+        int sum = 0;
+        int ans = 0;
+        for(int i = 0; i < n ; ++i){
+            sum += nums[i];
+            if(countMap.find(sum - k) != countMap.end()){
+                ans += countMap[sum-k];
+            }
+            countMap[sum]++;
+        }
+        return ans;
+    }
+```
