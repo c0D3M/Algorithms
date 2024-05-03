@@ -42,6 +42,11 @@ Similar XOR and prefixSum kind of problem
 Problem Similar to counting & prefix Sum/HashMap  
 [523. Continuous Subarray Sum](https://leetcode.com/problems/continuous-subarray-sum/description/)  
 [974. Subarray Sums Divisible by K](https://leetcode.com/problems/subarray-sums-divisible-by-k/)  
+Here we are trying to find smallest subarray of size remainder i.e. ```k = totalSum  % p ```
+psum<sub>i</sub> - psum<sub>j</sub> = k   
+if we remove this smallest subarray of k that means entire subarray sum excluding that will be divisible of p.  
+So we go and find the ```smallest subarray of size k``` 
+
 [560. Subarray Sum Equals K](https://leetcode.com/problems/subarray-sum-equals-k/description/)  
 [2090. K Radius Subarray Averages](https://leetcode.com/problems/k-radius-subarray-averages/description/)  
 [713. Subarray Product Less Than K](https://leetcode.com/problems/subarray-product-less-than-k/description/)  
