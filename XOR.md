@@ -124,3 +124,20 @@ int numberOfSubarrays(vector<int>& nums, int k) {
         return ans;
     }
 ```
+[930. Binary Subarrays With Sum](https://leetcode.com/problems/binary-subarrays-with-sum/description/)  
+```
+int numSubarraysWithSum(vector<int>& nums, int goal) {
+        int sum = 0;
+        int ans = 0;
+        unordered_map<int, int> countMap;
+        countMap[0] = 1;
+        for(int i =0; i < nums.size(); ++i){
+            sum += nums[i];
+            if(countMap.find(sum -goal)!=countMap.end()){
+                ans += countMap[sum-goal];
+            }
+            countMap[sum]++;
+        }
+        return ans;
+    }
+```
