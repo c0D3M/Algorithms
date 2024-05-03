@@ -18,7 +18,22 @@ This is related to prefix sum problem, solve  any of it like
 String = a<sub>0</sub>a<sub>1</sub>b<sub>0</sub>b<sub>1</sub>
 
 ![image](https://github.com/c0D3M/Algorithms/assets/20656683/41ff07d5-d9d2-4a0e-9e8e-a19933315f30)
+```
+long long wonderfulSubstrings(string word) {
+        vector<int> count(1024);
+        long long res = 0, cur = 0;
+        count[0] = 1L; // when XOR is 0 that means all char is occuring even times 
+        // so that is 1 substring
 
+        for (char& c: word) {
+            cur ^= 1 << (c - 'a');
+            res += count[cur]++;
+            for (int i = 0; i < 10; ++i)
+                res += count[cur ^ (1 << i)];
+        }
+        return res;
+    }
+```
 
 
 [1371. Find the Longest Substring Containing Vowels in Even Counts](https://leetcode.com/problems/find-the-longest-substring-containing-vowels-in-even-counts/description/)  
