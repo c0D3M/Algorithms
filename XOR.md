@@ -53,3 +53,50 @@ Here we are trying to find smallest subarray of size remainder i.e. ```k = total
 psum<sub>i</sub> - psum<sub>j</sub> = k   
 if we remove this smallest subarray of k that means entire subarray sum excluding that will be divisible of p.  
 So we go and find the ```smallest subarray of size k``` 
+
+[2845. Count of Interesting Subarrays](https://leetcode.com/problems/count-of-interesting-subarrays/description/)  
+
+First insight : ```nums[i] % modulo == k``` , only those numbers are considered in any given subarray , so convert input array 
+to binary array with this condition.
+```
+       for(int i =0; i < n ; ++i){
+            nums[i] = (nums[i] % modulo) == k;
+        }
+```
+
+Second Insight: 
+``` cnt % modulo == k ``` , cnt is subarray sum such that this condition hold true.  
+**psum<sub>i</sub>** be the subarray sum upto **i<sup>th</sup>** index.  
+**psum<sub>i</sub>** - **psum<sub>j</sub>** % modulo == k , this can be rearranged as  
+**psum<sub>i</sub>** - **psum<sub>j</sub>** - k = q * modulo  
+put q =0 and rearrange of psum<sub>j</sub> will yield  
+**psum<sub>j</sub>** = (**psum<sub>i</sub>** - k  ) % modulo
+So look if this exists in our map or not ?  
+Since we are dealing with modulo and it can be negative we can add an extra  modulo , which wont hurt in result.   
+
+```
+    long long countInterestingSubarrays(vector<int>& nums, int modulo, int k) {
+        // Step 1: convert input array such that for each
+        // i : nums[i] % modulo == k
+        int n = nums.size();
+        for(int i =0; i < n ; ++i){
+            nums[i] = (nums[i] % modulo) == k;
+        }
+        // After above conversion array will have 1 or 0 only
+
+        //Step 2:
+        // count the 1's
+        long long cnt = 0;
+        unordered_map<long long, long long> countMap;
+        countMap[0] = 1;
+        long long ans = 0;
+        for(int i =0; i < n ; ++i){
+            cnt += nums[i];
+            cnt %= modulo;
+            if(countMap.find(((cnt - k + modulo)%modulo)) != countMap.end())
+                ans += countMap[((cnt - k + modulo)%modulo)];
+            countMap[cnt]++;
+        }
+        return ans;
+    }
+```
