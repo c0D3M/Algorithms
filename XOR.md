@@ -35,6 +35,14 @@ long long wonderfulSubstrings(string word) {
     }
 ```
 
-
+Similar XOR and prefixSum kind of problem
 [1371. Find the Longest Substring Containing Vowels in Even Counts](https://leetcode.com/problems/find-the-longest-substring-containing-vowels-in-even-counts/description/)  
 [1542. Find Longest Awesome Substring](https://leetcode.com/problems/find-longest-awesome-substring/description/)  
+
+Problem Similar to counting & prefix Sum/HashMap  
+[523. Continuous Subarray Sum](https://leetcode.com/problems/continuous-subarray-sum/description/)  
+[974. Subarray Sums Divisible by K](https://leetcode.com/problems/subarray-sums-divisible-by-k/)  
+[560. Subarray Sum Equals K](https://leetcode.com/problems/subarray-sum-equals-k/description/)  
+[2090. K Radius Subarray Averages](https://leetcode.com/problems/k-radius-subarray-averages/description/)  
+[713. Subarray Product Less Than K](https://leetcode.com/problems/subarray-product-less-than-k/description/)  
+[1590. Make Sum Divisible by P](https://leetcode.com/problems/make-sum-divisible-by-p/description/)  
