@@ -97,7 +97,7 @@ Second Insight:
 **psum<sub>i</sub>** be the subarray sum upto **i<sup>th</sup>** index.  
 **psum<sub>i</sub>** - **psum<sub>j</sub>** % modulo == k , this can be rearranged as  
 **psum<sub>i</sub>** - **psum<sub>j</sub>** - k = q * modulo  
-put q =0 and rearrange of psum<sub>j</sub> will yield  
+dividing both side modulo and rearrange of psum<sub>j</sub> will yield, note that (q * modulo)% modulo will be 0
 **psum<sub>j</sub>** = (**psum<sub>i</sub>** - k  ) % modulo
 So look if this exists in our map or not ?  
 Since we are dealing with modulo and it can be negative we can add an extra  modulo , which wont hurt in result.   
