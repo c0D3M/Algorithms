@@ -42,7 +42,35 @@ Similar XOR and prefixSum kind of problem
 Problem Similar to counting & prefix Sum/HashMap  
 [523. Continuous Subarray Sum](https://leetcode.com/problems/continuous-subarray-sum/description/)  
 [974. Subarray Sums Divisible by K](https://leetcode.com/problems/subarray-sums-divisible-by-k/)  
-
+Some basic maths first  
+As per Euclidean division algorithm,  
+Given two integers a and b, with b ≠ 0, a = bq + r , where 0 ≤ r < |b|  
+Point to note is **remainder(r) must always be a +ve number**.  
+What happen either of *a* or *b* is -ve , for example -5 % 2 = ?   
+-5 = 2 *(-3) + 1 (r is 1)  
+But if you do same in C++  r would be -1, this is due to C++ implementation.  
+To fix this we would do ```(r + 2(b) ) % 2(b) ``` , that would give 1.  
+If remainder is +ve , it wont harm either  
+So formally for this problem  we would ``` psum = ( ( (psum + i) %K ) + K)%K ```  
+```
+  int subarraysDivByK(vector<int>& A, int K) {
+        int ans = 0;
+        int sum = 0;
+        unordered_map<int, int> countMap;
+        countMap[0] = 1;
+        for(int i : A){
+            // For +ve remainder it wont matter
+            // FOr -ve remainder, it will make as +ve
+            sum =  (((sum + i)%K )  +K)%K;
+            
+            if(countMap.find(sum)!=countMap.end()){
+                ans += countMap[sum];
+            }
+            countMap[sum]++;
+        }
+        return ans;
+    }
+```
 
 [560. Subarray Sum Equals K](https://leetcode.com/problems/subarray-sum-equals-k/description/)  
 [2090. K Radius Subarray Averages](https://leetcode.com/problems/k-radius-subarray-averages/description/)  
