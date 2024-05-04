@@ -73,9 +73,41 @@ So formally for this problem  we would ``` psum = ( ( (psum + i) %K ) + K)%K ```
 ```
 
 [560. Subarray Sum Equals K](https://leetcode.com/problems/subarray-sum-equals-k/description/)  
+```
+ int subarraySum(vector<int>& nums, int k) {
+        unordered_map<int, int> sumMap; 
+        int csum  =0;
+        int ans = 0;
+        int n = nums.size();
+        sumMap[0] = 1;
+        for(int i =0; i < n ; ++i){
+            csum += nums[i];
+            if(sumMap.count( csum -k) > 0){
+                ans += sumMap[csum-k];
+            }
+            sumMap[csum]++;
+        }
+        return ans;
+    }
+```
 [2090. K Radius Subarray Averages](https://leetcode.com/problems/k-radius-subarray-averages/description/)  
 [713. Subarray Product Less Than K](https://leetcode.com/problems/subarray-product-less-than-k/description/)  
 [2364. Count Number of Bad Pairs](https://leetcode.com/problems/count-number-of-bad-pairs/description/)  
+Rearranging what question is asking, we need to find all such pairs where ```i- nums[i] == j - nums[j]```
+So all pairs would be ```n * (n-1) / 2``` and if we find any such pair , we remove that count.
+```
+long long countBadPairs(vector<int>& nums) {
+        long long n = nums.size();
+        long long ans = (n * (n-1))>>1;
+        unordered_map<int, long long> m;
+        for(int i =0; i <n ; ++i){
+            int diff = i - nums[i];
+            ans -= m[diff];
+            ++m[diff];
+        }
+        return ans;
+```
+
 [1590. Make Sum Divisible by P](https://leetcode.com/problems/make-sum-divisible-by-p/description/)  
 Here we are trying to find smallest subarray of size remainder i.e. ```k = totalSum  % p ```
 psum<sub>i</sub> - psum<sub>j</sub> = k   
@@ -128,6 +160,19 @@ Since we are dealing with modulo and it can be negative we can add an extra  mod
         return ans;
     }
 ```
+[2575. Find the Divisibility Array of a String](https://leetcode.com/problems/find-the-divisibility-array-of-a-string/description/)  
+Purely a math trick about next number.  
+```
+10 * prefixNumber + currentDigit 
+10 * (m * div + rem.) + currentDigit 
+10 * m * div + 10 * rem + currentDigit 
+
+We can neglect the first term (10 * m * div) beacuse it will always
+be divisible by m. 
+
+Hnece nextNumber will be = 10*rem + currentDigit. 
+```
+
 
 [1248. Count Number of Nice Subarrays](https://leetcode.com/problems/count-number-of-nice-subarrays/description/)  
 Same as above , we are interested in only odd number, so again convert to binary array and apply the template.  
